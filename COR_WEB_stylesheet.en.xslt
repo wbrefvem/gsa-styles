@@ -536,11 +536,15 @@ function searchSubmit() {window.location="http://<xsl:value-of select="$cor_gsa"
 		jQuery('#SearchTools').click(function(){
 			jQuery('#col3').toggleClass('hidden');
 		});
-       /* jQuery('#DataPortal').on('click', funciton() {
+        jQuery('#DataPortal').on('click', function() {
              typeSearch('data.raleighnc.gov | inurl:data.ral.opendata.arcgis.com');
-        });*/
-        console.log($('#SearchInput').val());
-        jQuery.inArray('inurl:data.ral.opendata.arcgis.com', $('#SearchInput').val().split(' '));
+        });
+        var searchTermArray = $('#SearchInput').val().split(' ');
+        var indexOfDataUrl = jQuery.inArray('inurl:data.ral.opendata.arcgis.com', searchTermArray);
+
+        if (indexOfDataUrl > 0) {
+        	$('#SearchInput').val(searchTermArray[0]);
+        }
 	});
 	<![CDATA[
   function dateSearch(time) {
